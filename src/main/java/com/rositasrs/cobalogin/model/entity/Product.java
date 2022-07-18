@@ -1,22 +1,38 @@
-package com.rositasrs.cobalogin.model.dto;
+package com.rositasrs.cobalogin.model.entity;
 
-public class ProductDto {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-  private String productId;
+@Entity
+@Table(name = "t_product")
+public class Product {
+
+  @Id
+  @Column(name = "product_id")
+  private Integer productId;
+  @Column(name = "product_name")
   private String productName;
   /*private ?????? image;*/
+  @Column(name = "color_id")
   private Integer colorId;
+  @Column(name = "product_stock")
   private Integer productStock;
+  @Column
   private Double price;
+  @Column
   private String description;
+  @Column(name = "product_weight")
   private Double productWeight;
+  @Column(name = "product_release_date")
   private Integer productReleaseDate;
 
-  public String getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(String productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 
