@@ -1,12 +1,14 @@
 package com.rositasrs.cobalogin.model.dto;
 
-public class DefaultResponse {
+public class DefaultResponse<T> {
 
     private Boolean status;
 
     public String getMessage() {
         return message;
     }
+
+    private T data;
 
     public void setMessage(String message) {
         this.message = message;
@@ -20,5 +22,13 @@ public class DefaultResponse {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

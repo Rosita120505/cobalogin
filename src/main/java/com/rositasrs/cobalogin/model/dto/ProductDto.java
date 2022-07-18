@@ -2,7 +2,7 @@ package com.rositasrs.cobalogin.model.dto;
 
 public class ProductDto {
 
-  private String productId;
+  private Integer productId;
   private String productName;
   /*private ?????? image;*/
   private Integer colorId;
@@ -12,11 +12,11 @@ public class ProductDto {
   private Double productWeight;
   private Integer productReleaseDate;
 
-  public String getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(String productId) {
+  public void setProductId(Integer productId) {
     this.productId = productId;
   }
 

@@ -91,4 +91,5 @@ public class Product {
   public void setProductReleaseDate(Integer productReleaseDate) {
     this.productReleaseDate = productReleaseDate;
   }
+
 }
