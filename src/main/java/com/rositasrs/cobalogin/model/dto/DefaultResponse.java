@@ -21,4 +21,6 @@ public class DefaultResponse {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+
 }

@@ -24,6 +24,14 @@ public class User {
     @Column(name = "id_alamat_pengiriman")
     private Integer alamatpengiriman;
 
+
+    public Integer getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(Integer iduser) {
+        this.iduser = iduser;
+    }
     public String getUsername() {
         return username;
     }
