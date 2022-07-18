@@ -2,25 +2,25 @@ package com.rositasrs.cobalogin.controller;
 
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
 import com.rositasrs.cobalogin.model.dto.LoginDto;
-import com.rositasrs.cobalogin.model.entity.Pembeli;
-import com.rositasrs.cobalogin.repository.PembeliRepository;
+import com.rositasrs.cobalogin.model.entity.User;
+import com.rositasrs.cobalogin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pembeli")
-public class PembeliController {
+@RequestMapping("/auth")
+public class AuthController {
 
     @Autowired
-    private PembeliRepository pembeliRepository;
+    private UserRepository pembeliRepository;
 
-    /*untuk mengakses -- /pembeli/login */
+    /*untuk mengakses -- /auth/login */
     @PostMapping("/login")
     public DefaultResponse login(@RequestBody LoginDto loginDto){
 
-        Optional<Pembeli> optionalPembeli = pembeliRepository.findByUsernameAndPassword(loginDto.getUname(),loginDto.getPass());
+        Optional<User> optionalPembeli = pembeliRepository.findByUsernameAndPassword(loginDto.getUname(),loginDto.getPass());
 
         DefaultResponse df = new DefaultResponse();
         if(optionalPembeli.isPresent()){
