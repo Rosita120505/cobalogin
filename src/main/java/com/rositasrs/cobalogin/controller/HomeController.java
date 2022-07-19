@@ -22,6 +22,6 @@ public class HomeController {
     @GetMapping("/best")
     public List<ProductDto> getListProduct() {
         List<ProductDto> list = new ArrayList<>();
-
+        for (Product)
     }
 }
