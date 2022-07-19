@@ -6,17 +6,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(nama = 't_user_profile')
+@Table(name="t_userprofile")
 public class Profile {
 
     @Id
-    @Column (nama = 'profile_id')
+    @Column (name="profile_id")
     private Integer profileId;
 
-    @Column (nama = 'user_id')
+    @Column (name="user_id")
     private Integer userId;
 
-    @Column (nama = address)
+    @Column (name="address")
     private String address;
 
     public Integer getProfileId() {
