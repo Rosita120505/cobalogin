@@ -10,7 +10,6 @@ public class RegiterDto {
     private String noHp;
     private String email;
     private String pass;
-    private Integer idAlamatPengiriman;
 
 
     public Integer getUserId() {
@@ -59,14 +58,6 @@ public class RegiterDto {
 
     public void setPass(String pass) {
         this.pass = pass;
-    }
-
-    public Integer getIdAlamatPengiriman() {
-        return idAlamatPengiriman;
-    }
-
-    public void setIdAlamatPengiriman(Integer idAlamatPengiriman) {
-        this.idAlamatPengiriman = idAlamatPengiriman;
     }
 
     public void save(User user) {

@@ -18,7 +18,7 @@ public class AuthController {
     private UserRepository userRepository;
 
     /*untuk mengakses -- /auth/login */
-    @PostMapping("/login")
+    @GetMapping("/login")
     public DefaultResponse login(@RequestBody LoginDto loginDto){
 
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(loginDto.getUname(),loginDto.getPass());

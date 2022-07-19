@@ -21,9 +21,6 @@ public class User {
     private String email;
     @Column(name = "no_hp", length = 15)
     private String nohp;
-    @Column(name = "id_alamat_pengiriman")
-    private Integer alamatpengiriman;
-
 
     public Integer getIduser() {
         return iduser;
@@ -71,12 +68,5 @@ public class User {
     public void setNohp(String nohp) {
         this.nohp = nohp;
     }
-
-    public Integer getAlamatpengiriman() {
-        return alamatpengiriman;
-    }
-
-    public void setAlamatpengiriman(Integer alamatpengiriman) {
-        this.alamatpengiriman = alamatpengiriman;
-    }
+    
 }
