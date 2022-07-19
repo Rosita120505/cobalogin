@@ -65,6 +65,7 @@ public class ProductController {
     product.setProductDescription(dto.getProductDescription());
     product.setProductWeight(dto.getProductWeight());
     product.setProductReleaseDate(dto.getProductReleaseDate());
+    product.setProductStockFinal(dto.getProductStockFinal());
 
     return product;
   }
@@ -79,6 +80,7 @@ public class ProductController {
     dto.setProductDescription(entity.getProductDescription());
     dto.setProductWeight(entity.getProductWeight());
     dto.setProductReleaseDate(entity.getProductReleaseDate());
+    dto.setProductStockFinal(dto.getProductStockFinal());
 
     return dto;
   }

@@ -27,6 +27,8 @@ public class Product {
   private Double productWeight;
   @Column(name = "product_release_date")
   private Integer productReleaseDate;
+  @Column(name = "product_stock_final")
+  private Integer productStockFinal;
 
   public Integer getProductId() {
     return productId;
@@ -90,5 +92,13 @@ public class Product {
 
   public void setProductReleaseDate(Integer productReleaseDate) {
     this.productReleaseDate = productReleaseDate;
+  }
+
+  public Integer getProductStockFinal() {
+    return productStockFinal;
+  }
+
+  public void setProductStockFinal(Integer productStockFinal) {
+    this.productStockFinal = productStockFinal;
   }
 }
