@@ -21,7 +21,7 @@ public class AuthController {
     @GetMapping("/login")
     public DefaultResponse login(@RequestBody LoginDto loginDto){
 
-        Optional<User> optionalUser = userRepository.findByUsernameAndPassword(loginDto.getUname(),loginDto.getPass());
+        Optional<User> optionalUser = userRepository.findByUserNameAndPassword(loginDto.getUname(),loginDto.getPass());
 
         DefaultResponse df = new DefaultResponse();
         if(optionalUser.isPresent()){
@@ -41,7 +41,7 @@ public class AuthController {
     public DefaultResponse saveuser(@RequestBody RegisterDto registerDto){
         User user = convertDtoToEntity(registerDto);
         DefaultResponse response = new DefaultResponse();
-        Optional<User> optional = userRepository.findByUsername(registerDto.getUsername());
+        Optional<User> optional = userRepository.findByUserName(registerDto.getUserName());
         if(optional.isPresent()){
             response.setStatus(Boolean.FALSE);
             response.setMessage("Error, Data Username Sudah Tersedia");
@@ -56,11 +56,11 @@ public class AuthController {
 
     public User convertDtoToEntity(RegisterDto dto){
         User user = new User();
-        user.setUsername(dto.getUsername());
-        user.setIduser(dto.getIduser());
-        user.setNamalengkap(dto.getNamalengkap());
+        user.setUserName(dto.getUserName());
+        user.setUserId(dto.getUserId());
+        user.setFullName(dto.getFullName());
         user.setEmail(dto.getEmail());
-        user.setNohp(dto.getNohp());
+        user.setNoHp(dto.getNoHp());
         user.setPassword(dto.getPassword());
 
         return user;

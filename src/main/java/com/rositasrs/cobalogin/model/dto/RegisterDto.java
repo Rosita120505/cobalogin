@@ -2,43 +2,43 @@ package com.rositasrs.cobalogin.model.dto;
 
 public class RegisterDto {
 
-    private Integer iduser;
-    private String namalengkap;
-    private String username;
-    private String nohp;
+    private Integer userId;
+    private String fullName;
+    private String userName;
+    private String noHp;
     private String email;
     private String password;
 
-    public Integer getIduser() {
-        return iduser;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setIduser(Integer iduser) {
-        this.iduser = iduser;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getNamalengkap() {
-        return namalengkap;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setNamalengkap(String namalengkap) {
-        this.namalengkap = namalengkap;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getNohp() {
-        return nohp;
+    public String getNoHp() {
+        return noHp;
     }
 
-    public void setNohp(String nohp) {
-        this.nohp = nohp;
+    public void setNoHp(String noHp) {
+        this.noHp = noHp;
     }
 
     public String getEmail() {

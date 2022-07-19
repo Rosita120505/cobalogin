@@ -10,31 +10,32 @@ import javax.persistence.Table;
 public class User {
     @Id
     @Column(name = "id_user")
-    private Integer iduser;
+    private Integer userId;
     @Column(name = "username", length = 15, unique = true)
-    private String username;
+    private String userName;
     @Column(name = "password")
     private String password;
     @Column(name = "nama_lengkap", length = 30)
-    private String namalengkap;
+    private String fullName;
     @Column(name = "email", length = 30)
     private String email;
     @Column(name = "no_hp", length = 15)
-    private String nohp;
+    private String noHp;
 
-    public Integer getIduser() {
-        return iduser;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setIduser(Integer iduser) {
-        this.iduser = iduser;
-    }
-    public String getUsername() {
-        return username;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -45,12 +46,12 @@ public class User {
         this.password = password;
     }
 
-    public String getNamalengkap() {
-        return namalengkap;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setNamalengkap(String namalengkap) {
-        this.namalengkap = namalengkap;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -61,12 +62,11 @@ public class User {
         this.email = email;
     }
 
-    public String getNohp() {
-        return nohp;
+    public String getNoHp() {
+        return noHp;
     }
 
-    public void setNohp(String nohp) {
-        this.nohp = nohp;
+    public void setNoHp(String noHp) {
+        this.noHp = noHp;
     }
-    
 }
