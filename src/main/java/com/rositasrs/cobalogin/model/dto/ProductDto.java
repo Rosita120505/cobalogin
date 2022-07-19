@@ -11,7 +11,6 @@ public class ProductDto {
   private String productDescription;
   private Double productWeight;
   private Integer productReleaseDate;
-
   private Integer productStockFinal;
 
   public Integer getProductId() {

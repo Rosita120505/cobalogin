@@ -2,7 +2,7 @@ package com.rositasrs.cobalogin.controller;
 
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
 import com.rositasrs.cobalogin.model.dto.LoginDto;
-import com.rositasrs.cobalogin.model.dto.RegiterDto;
+import com.rositasrs.cobalogin.model.dto.RegisterDto;
 import com.rositasrs.cobalogin.model.entity.User;
 import com.rositasrs.cobalogin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +38,10 @@ public class AuthController {
 
     /*untuk mengakses -- /auth/register */
     @PostMapping("/register")
-    public DefaultResponse saveuser(@RequestBody RegiterDto regiterDto){
-        User user = convertDtoToEntity(regiterDto);
+    public DefaultResponse saveuser(@RequestBody RegisterDto registerDto){
+        User user = convertDtoToEntity(registerDto);
         DefaultResponse response = new DefaultResponse();
-        Optional<User> optional = userRepository.findByUsername(regiterDto.getUname());
+        Optional<User> optional = userRepository.findByUsername(registerDto.getUsername());
         if(optional.isPresent()){
             response.setStatus(Boolean.FALSE);
             response.setMessage("Error, Data Username Sudah Tersedia");
@@ -54,14 +54,14 @@ public class AuthController {
         return response;
     }
 
-    public User convertDtoToEntity(RegiterDto dto){
+    public User convertDtoToEntity(RegisterDto dto){
         User user = new User();
-        user.setUsername(dto.getUname());
-        user.setIduser(dto.getUserId());
-        user.setNamalengkap(dto.getFullName());
+        user.setUsername(dto.getUsername());
+        user.setIduser(dto.getIduser());
+        user.setNamalengkap(dto.getNamalengkap());
         user.setEmail(dto.getEmail());
-        user.setNohp(dto.getNoHp());
-        user.setPassword(dto.getPass());
+        user.setNohp(dto.getNohp());
+        user.setPassword(dto.getPassword());
 
         return user;
     }
