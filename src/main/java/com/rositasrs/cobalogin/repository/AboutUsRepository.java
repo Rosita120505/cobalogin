@@ -1,4 +1,4 @@
 package com.rositasrs.cobalogin.repository;
 
-public class AboutUsRepository {
+public interface AboutUsRepository {
 }
