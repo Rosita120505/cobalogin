@@ -16,7 +16,6 @@ public class Product {
   private Integer colorId;
   @Column(name = "product_stock")
   private Integer productStock;
-
   @Column
   private Double price;
   @Column
@@ -27,6 +26,8 @@ public class Product {
   private Integer productReleaseDate;
   @Column(name = "product_stock_final")
   private Integer productStockFinal;
+  @Column(name = "product_type")
+  private String productType;
 
   public Integer getProductId() {
     return productId;
@@ -98,5 +99,13 @@ public class Product {
 
   public void setProductStockFinal(Integer productStockFinal) {
     this.productStockFinal = productStockFinal;
+  }
+
+  public String getProductType() {
+    return productType;
+  }
+
+  public void setProductType(String productType) {
+    this.productType = productType;
   }
 }

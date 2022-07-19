@@ -2,9 +2,12 @@ package com.rositasrs.cobalogin.controller;
 
 
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
+import com.rositasrs.cobalogin.model.dto.LoginDto;
 import com.rositasrs.cobalogin.model.dto.ProductDto;
 import com.rositasrs.cobalogin.model.entity.Product;
+import com.rositasrs.cobalogin.model.entity.User;
 import com.rositasrs.cobalogin.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -15,22 +18,24 @@ import java.util.Optional;
 @RequestMapping("/product")
 public class ProductController {
 
-  private final ProductRepository productRepository;
+  @Autowired
+  private ProductRepository productRepository;
 
-  public ProductController(ProductRepository productRepository){
-    this.productRepository = productRepository;
+  @GetMapping("/type/{productType}") // buat ngefilter sesuai tipe produk
+  public DefaultResponse getByProductType(@PathVariable String productType){
+    DefaultResponse df = new DefaultResponse();
+    Optional<Product> productOptional = productRepository.findByProductType(productType);
+    if(productOptional.isPresent()){
+      df.setStatus(Boolean.TRUE);
+      df.setMessage("Tipe Produk Ditemukan");
+    } else {
+      df.setStatus(Boolean.FALSE);
+      df.setMessage("Tipe Produk Tidak Ditemukan");
+    }
+    return df;
   }
 
-
-  /*@GetMapping("/")
-  public ProductDto getProduct(){
-    ProductDto p = new ProductDto();
-    p.setProductId(001);
-    p.setProductName("Bergo");
-    return p;
-  }*/
-
-  @GetMapping("/all")
+  @GetMapping("/all") // buat nampilin produk yang ada di database
   public List<ProductDto> getListProduct(){
     List<ProductDto> list = new ArrayList<>();
     for(Product p :productRepository.findAll()){
@@ -39,7 +44,7 @@ public class ProductController {
     return list;
   }
 
-  @PostMapping("/save")
+  @PostMapping("/save") // buat nyimpen produk di database
   public DefaultResponse<ProductDto> saveProduct(@RequestBody ProductDto productDto){
     Product product = convertDtoToEntity(productDto);
     DefaultResponse<ProductDto> response = new DefaultResponse<>();
@@ -55,6 +60,8 @@ public class ProductController {
 
   }
 
+
+
   public Product convertDtoToEntity(ProductDto dto){
     Product product = new Product();
     product.setProductId(dto.getProductId());
@@ -66,6 +73,7 @@ public class ProductController {
     product.setProductWeight(dto.getProductWeight());
     product.setProductReleaseDate(dto.getProductReleaseDate());
     product.setProductStockFinal(dto.getProductStockFinal());
+    product.setProductType(dto.getProductType());
 
     return product;
   }
@@ -80,7 +88,8 @@ public class ProductController {
     dto.setProductDescription(entity.getProductDescription());
     dto.setProductWeight(entity.getProductWeight());
     dto.setProductReleaseDate(entity.getProductReleaseDate());
-    dto.setProductStockFinal(dto.getProductStockFinal());
+    dto.setProductStockFinal(entity.getProductStockFinal());
+    dto.setProductType(entity.getProductType());
 
     return dto;
   }

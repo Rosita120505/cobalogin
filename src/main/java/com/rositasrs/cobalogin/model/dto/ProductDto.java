@@ -12,6 +12,7 @@ public class ProductDto {
   private Double productWeight;
   private Integer productReleaseDate;
   private Integer productStockFinal;
+  private String productType;
 
   public Integer getProductId() {
     return productId;
@@ -83,5 +84,13 @@ public class ProductDto {
 
   public void setProductStockFinal(Integer productStockFinal) {
     this.productStockFinal = productStockFinal;
+  }
+
+  public String getProductType() {
+    return productType;
+  }
+
+  public void setProductType(String productType) {
+    this.productType = productType;
   }
 }
