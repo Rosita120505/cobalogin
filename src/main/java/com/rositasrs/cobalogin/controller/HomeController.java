@@ -1,16 +1,16 @@
 package com.rositasrs.cobalogin.controller;
 
-import antlr.collections.List;
 import com.rositasrs.cobalogin.model.dto.ProductDto;
-import com.rositasrs.cobalogin.model.entity.Product;
 import com.rositasrs.cobalogin.repository.HomeRepository;
-import org.springframework.web.bind.annotation.*;
+import org.hibernate.mapping.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
-
 @RestController
-@RequestMapping("/home")
+@RequestMapping ("/home")
 public class HomeController {
 
     private HomeRepository homeRepository;
@@ -19,8 +19,9 @@ public class HomeController {
         this.homeRepository = homeRepository;
     }
 
-    @GetMapping("/terbaru")
-    public List<ProductDto> getListProduct () {
-        List <ProductDto> list = new ArrayList<> ();
+    @GetMapping("/best")
+    public List<ProductDto> getListProduct() {
+        List<ProductDto> list = new ArrayList<>();
+        for (Product)
     }
 }
