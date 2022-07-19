@@ -4,7 +4,7 @@ public class OrderDto {
 
     private String orderId;
     private Integer numberofProduct;
-    private Integer weightTotal;
+    private Double weightTotal;
     private Integer profilId;
     private Integer deliveryCode;
     private Double shippingCosts;
@@ -34,11 +34,11 @@ public class OrderDto {
         this.numberofProduct = numberofProduct;
     }
 
-    public Integer getWeightTotal() {
+    public Double getWeightTotal() {
         return weightTotal;
     }
 
-    public void setWeightTotal(Integer weightTotal) {
+    public void setWeightTotal(Double weightTotal) {
         this.weightTotal = weightTotal;
     }
 

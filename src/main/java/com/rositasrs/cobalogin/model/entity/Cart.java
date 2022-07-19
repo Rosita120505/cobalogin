@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "t_chart")
+@Table(name = "t_cart")
 public class Cart {
     @Id
     @Column(name = "cart_id")
