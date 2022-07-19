@@ -50,9 +50,11 @@ public class ProductController {
     DefaultResponse<ProductDto> response = new DefaultResponse<>();
     Optional<Product> optionalProduct = productRepository.findByProductId(productDto.getProductId());
     if(optionalProduct.isPresent()){
+      response.setStatus(Boolean.FALSE);
       response.setMessage("Gagal Menyimpan, Produk Telah Tersedia");
     } else{
       productRepository.save(product);
+      response.setStatus(Boolean.TRUE);
       response.setMessage("Produk Berhasil Disimpan");
       response.setData(productDto);
     }
