@@ -3,7 +3,7 @@ package com.rositasrs.cobalogin.model.dto;
 public class ExpeditionDto {
 
     private Integer deliveryCode;
-    private String desc;
+    private String descr;
 
     public Integer getDeliveryCode() {
         return deliveryCode;
@@ -13,11 +13,11 @@ public class ExpeditionDto {
         this.deliveryCode = deliveryCode;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescr() {
+        return descr;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescr(String descr) {
+        this.descr = descr;
     }
 }
