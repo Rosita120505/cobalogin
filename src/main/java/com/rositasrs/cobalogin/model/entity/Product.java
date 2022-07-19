@@ -22,7 +22,7 @@ public class Product {
   @Column
   private Double price;
   @Column
-  private String description;
+  private String productDescription;
   @Column(name = "product_weight")
   private Double productWeight;
   @Column(name = "product_release_date")
@@ -68,12 +68,12 @@ public class Product {
     this.price = price;
   }
 
-  public String getDescription() {
-    return description;
+  public String getProductDescription() {
+    return productDescription;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setProductDescription(String productDescription) {
+    this.productDescription = productDescription;
   }
 
   public Double getProductWeight() {
@@ -91,5 +91,4 @@ public class Product {
   public void setProductReleaseDate(Integer productReleaseDate) {
     this.productReleaseDate = productReleaseDate;
   }
-
 }

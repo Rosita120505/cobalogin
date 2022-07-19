@@ -21,6 +21,15 @@ public class ProductController {
     this.productRepository = productRepository;
   }
 
+
+  /*@GetMapping("/")
+  public ProductDto getProduct(){
+    ProductDto p = new ProductDto();
+    p.setProductId(001);
+    p.setProductName("Bergo");
+    return p;
+  }*/
+
   @GetMapping("/all")
   public List<ProductDto> getListProduct(){
     List<ProductDto> list = new ArrayList<>();
@@ -40,7 +49,7 @@ public class ProductController {
     } else{
       productRepository.save(product);
       response.setMessage("Produk Berhasil Disimpan");
-      /*response.setData(productDto);*/
+      response.setData(productDto);
     }
     return response;
 
@@ -53,7 +62,7 @@ public class ProductController {
     product.setColorId(dto.getColorId());
     product.setProductStock(dto.getProductStock());
     product.setPrice(dto.getPrice());
-    product.setDescription(dto.getDescription());
+    product.setProductDescription(dto.getProductDescription());
     product.setProductWeight(dto.getProductWeight());
     product.setProductReleaseDate(dto.getProductReleaseDate());
 
@@ -67,7 +76,7 @@ public class ProductController {
     dto.setColorId(entity.getColorId());
     dto.setProductStock(entity.getProductStock());
     dto.setPrice(entity.getPrice());
-    dto.setDescription(entity.getDescription());
+    dto.setProductDescription(entity.getProductDescription());
     dto.setProductWeight(entity.getProductWeight());
     dto.setProductReleaseDate(entity.getProductReleaseDate());
 

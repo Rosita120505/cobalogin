@@ -12,7 +12,7 @@ public class ColorId {
   @Column(name = "color_id")
   private Integer colorId;
   @Column
-  private String description;
+  private String colorDescription;
 
   public Integer getColorId() {
     return colorId;
@@ -22,12 +22,12 @@ public class ColorId {
     this.colorId = colorId;
   }
 
-  public String getDescription() {
-    return description;
+  public String getColorDescription() {
+    return colorDescription;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setColorDescription(String colorDescription) {
+    this.colorDescription = colorDescription;
   }
 }
 

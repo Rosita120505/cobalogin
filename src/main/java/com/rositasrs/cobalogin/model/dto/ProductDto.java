@@ -8,7 +8,7 @@ public class ProductDto {
   private Integer colorId;
   private Integer productStock;
   private Double price;
-  private String description;
+  private String productDescription;
   private Double productWeight;
   private Integer productReleaseDate;
 
@@ -52,12 +52,12 @@ public class ProductDto {
     this.price = price;
   }
 
-  public String getDescription() {
-    return description;
+  public String getProductDescription() {
+    return productDescription;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setProductDescription(String productDescription) {
+    this.productDescription = productDescription;
   }
 
   public Double getProductWeight() {

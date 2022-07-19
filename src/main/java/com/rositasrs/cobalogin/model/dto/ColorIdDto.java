@@ -3,7 +3,7 @@ package com.rositasrs.cobalogin.model.dto;
 public class ColorIdDto {
 
   private Integer colorId;
-  private String description;
+  private String colorDescription;
 
   public Integer getColorId() {
     return colorId;
@@ -13,11 +13,11 @@ public class ColorIdDto {
     this.colorId = colorId;
   }
 
-  public String getDescription() {
-    return description;
+  public String getColorDescription() {
+    return colorDescription;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setColorDescription(String colorDescription) {
+    this.colorDescription = colorDescription;
   }
 }
