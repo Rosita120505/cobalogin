@@ -21,23 +21,23 @@ public class HomeController {
         this.homeRepository = homeRepository;
     }
 
-//    @GetMapping("/best")
-//    public List<ProductDto> getListProduct() {
-//        List<ProductDto> best = new ArrayList<>();
-//        for (Product b: homerepository.findAll()) {
-//            best.add(convertEntityToDto(b));
-//            }
-//          return best;
-//    }
+    @GetMapping("/best")
+    public List<ProductDto> getListProduct() {
+        List<ProductDto> best = new ArrayList<>();
+        for (Product b: homeRepository.findAll()) {
+            best.add(convertEntityToDto(b));
+            }
+          return best;
+    }
 
-//    @GetMapping("/latest")
-//    public List <ProductDto> getListProduct() {
-//        List<ProductDto> late = new ArrayList<>();
-//        for (Product l : homeRepository.findAll()) {
-//            list.add(convertEntityToDto(l));
-//        }
-//        return late;
-//    }
+    @GetMapping("/latest")
+    public List <ProductDto> getListProduct() {
+        List<ProductDto> late = new ArrayList<>();
+        for (Product l : homeRepository.findAll()) {
+            late.add(convertEntityToDto(l));
+        }
+        return late;
+    }
 
 //    public Product convertDtoToEntity(ProductDto dto) {
 //        Product product = new Product();
