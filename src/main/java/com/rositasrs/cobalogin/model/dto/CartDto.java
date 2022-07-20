@@ -2,15 +2,15 @@ package com.rositasrs.cobalogin.model.dto;
 
 public class CartDto {
 
-    private String cartId;
+    private Integer cartId;
     private Integer numberofOrder;
     private Double total;
 
-    public String getCartId() {
+    public Integer getCartId() {
         return cartId;
     }
 
-    public void setCartId(String cartId) {
+    public void setCartId(Integer cartId) {
         this.cartId = cartId;
     }
 
