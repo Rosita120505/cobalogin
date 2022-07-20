@@ -27,6 +27,7 @@ public class ProductController {
     Optional<Product> productOptional = productRepository.findByProductType(productType);
     if(productOptional.isPresent()){
       df.setStatus(Boolean.TRUE);
+      df.setData(convertEntitytoDto(productOptional.get()));
       df.setMessage("Tipe Produk Ditemukan");
     } else {
       df.setStatus(Boolean.FALSE);
