@@ -2,7 +2,7 @@ package com.rositasrs.cobalogin.model.dto;
 
 public class OrderDto {
 
-    private String orderId;
+    private Integer orderId;
     private Integer numberofProduct;
     private Double weightTotal;
     private Integer profilId;
@@ -18,11 +18,11 @@ public class OrderDto {
     private String deliveryDate;
     private String receivedDate;
 
-    public String getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
