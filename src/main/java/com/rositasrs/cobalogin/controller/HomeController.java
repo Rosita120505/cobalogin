@@ -33,7 +33,7 @@ public class HomeController {
         List<ProductDto> productDtoList = new ArrayList();
         for(Product product :  productList){
             // masing2 product ini di convert ke dto
-            productDtoList.add(productDtoList) // hasil dari convert to dto
+            productDtoList.add(); // hasil dari convert to dto
         }
         // kasih kondisinya
         result.setMessage("Berikut Adalah 3 Product Terbaru");
