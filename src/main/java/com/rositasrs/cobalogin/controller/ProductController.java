@@ -21,6 +21,15 @@ public class ProductController {
   @Autowired
   private ProductRepository productRepository;
 
+  @GetMapping("/all") // buat nampilin produk yang ada di database
+  public List<ProductDto> getListProduct(){
+    List<ProductDto> list = new ArrayList<>();
+    for(Product p :productRepository.findAll()){
+      list.add(convertEntitytoDto(p));
+    }
+    return list;
+  }
+
   @GetMapping("/type/{productType}") // buat ngefilter sesuai tipe produk
   public DefaultResponse getByProductType(@PathVariable String productType){
     DefaultResponse df = new DefaultResponse();
@@ -36,8 +45,8 @@ public class ProductController {
     return df;
   }
 
-  @GetMapping("/all") // buat nampilin produk yang ada di database
-  public List<ProductDto> getListProduct(){
+  @GetMapping("/sort/bydate")
+  public List<ProductDto> getListNewProduct(){
     List<ProductDto> list = new ArrayList<>();
     for(Product p :productRepository.findAll()){
       list.add(convertEntitytoDto(p));
