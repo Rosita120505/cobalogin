@@ -1,12 +1,14 @@
 package com.rositasrs.cobalogin.model.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "t_product")
 public class Product {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")
   @Column(name = "product_id")
   private Integer productId;
   @Column(name = "product_name")
@@ -22,8 +24,9 @@ public class Product {
   private String productDescription;
   @Column(name = "product_weight")
   private Double productWeight;
+  @Temporal(TemporalType.DATE)
   @Column(name = "product_release_date")
-  private Integer productReleaseDate;
+  private Date productReleaseDate;
   @Column(name = "product_stock_final")
   private Integer productStockFinal;
   @Column(name = "product_type")
@@ -85,11 +88,11 @@ public class Product {
     this.productWeight = productWeight;
   }
 
-  public Integer getProductReleaseDate() {
+  public Date getProductReleaseDate() {
     return productReleaseDate;
   }
 
-  public void setProductReleaseDate(Integer productReleaseDate) {
+  public void setProductReleaseDate(Date productReleaseDate) {
     this.productReleaseDate = productReleaseDate;
   }
 

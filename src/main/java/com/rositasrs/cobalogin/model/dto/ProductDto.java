@@ -1,5 +1,9 @@
 package com.rositasrs.cobalogin.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class ProductDto {
 
   private Integer productId;
@@ -10,7 +14,8 @@ public class ProductDto {
   private Double price;
   private String productDescription;
   private Double productWeight;
-  private Integer productReleaseDate;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
+  private Date productReleaseDate;
   private Integer productStockFinal;
   private String productType;
 
@@ -70,11 +75,11 @@ public class ProductDto {
     this.productWeight = productWeight;
   }
 
-  public Integer getProductReleaseDate() {
+  public Date getProductReleaseDate() {
     return productReleaseDate;
   }
 
-  public void setProductReleaseDate(Integer productReleaseDate) {
+  public void setProductReleaseDate(Date productReleaseDate) {
     this.productReleaseDate = productReleaseDate;
   }
 
