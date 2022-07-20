@@ -1,14 +1,14 @@
 package com.rositasrs.cobalogin.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_user")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")
     @Column(name = "id_user")
     private Integer userId;
     @Column(name = "username", length = 15, unique = true)
