@@ -25,18 +25,18 @@ public class HomeController {
         this.homeRepository = homeRepository;
     }
 
-    @GetMapping ("/newproduct")
-    public DefaultResponse getByproductNew(){
+    @GetMapping ("/latest-product")
+    public DefaultResponse getByProductReleseDate(){
         // kumpulan data sebanyak kita
-        List<Product> productList = homeRepository.findNewProduct();
+        List<Product> productList = homeRepository.findByProductReleseDate();
         DefaultResponse<List<ProductDto>> result = new DefaultResponse();
         List<ProductDto> productDtoList = new ArrayList();
         for(Product product :  productList){
             // masing2 product ini di convert ke dto
-            productDtoList.add // hasil dari convert to dto
+            productDtoList.add(productDtoList) // hasil dari convert to dto
         }
         // kasih kondisinya
-        result.setMessage("");
+        result.setMessage("Berikut Adalah 3 Product Terbaru");
         result.setStatus(Boolean.TRUE);
         result.setData(productDtoList);
         return result;
