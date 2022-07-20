@@ -1,21 +1,20 @@
 package com.rositasrs.cobalogin.model.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "t_order")
 public class Order {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_order")
     @Column(name = "order_id")
     private Integer orderId;
     @Column(name = "number_of_product")
     private Integer numberofProduct;
     @Column(name = "weight_total")
-    private Double weightTotal;;
+    private Double weightTotal;
     @Column(name = "profil_id")
     private Integer profilId;
     @Column(name = "delivery_code")
@@ -32,14 +31,17 @@ public class Order {
     private String paymentStatus;
     @Column(name = "order_status")
     private String orderStatus;
+    @Temporal(TemporalType.DATE)
     @Column(name = "order_date")
-    private String orderDate;
+    private Date orderDate;
     @Column(name = "cart_id")
     private Integer cartId;
+    @Temporal(TemporalType.DATE)
     @Column(name = "delivery_date")
-    private String deliveryDate;
+    private Date deliveryDate;
+    @Temporal(TemporalType.DATE)
     @Column(name = "receive_date")
-    private String receivedDate;
+    private Date receivedDate;
 
     public Integer getOrderId() {
         return orderId;
@@ -129,11 +131,11 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public String getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -145,19 +147,19 @@ public class Order {
         this.cartId = cartId;
     }
 
-    public String getDeliveryDate() {
+    public Date getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(String deliveryDate) {
+    public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
-    public String getReceivedDate() {
+    public Date getReceivedDate() {
         return receivedDate;
     }
 
-    public void setReceivedDate(String receivedDate) {
+    public void setReceivedDate(Date receivedDate) {
         this.receivedDate = receivedDate;
     }
 }

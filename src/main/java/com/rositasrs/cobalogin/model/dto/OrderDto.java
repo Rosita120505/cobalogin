@@ -1,5 +1,9 @@
 package com.rositasrs.cobalogin.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class OrderDto {
 
     private Integer orderId;
@@ -13,10 +17,13 @@ public class OrderDto {
     private Integer paymentId;
     private String paymentStatus;
     private String orderStatus;
-    private String orderDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date orderDate;
     private Integer cartId;
-    private String deliveryDate;
-    private String receivedDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date deliveryDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date receivedDate;
 
     public Integer getOrderId() {
         return orderId;
@@ -106,11 +113,11 @@ public class OrderDto {
         this.orderStatus = orderStatus;
     }
 
-    public String getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -122,19 +129,19 @@ public class OrderDto {
         this.cartId = cartId;
     }
 
-    public String getDeliveryDate() {
+    public Date getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(String deliveryDate) {
+    public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
-    public String getReceivedDate() {
+    public Date getReceivedDate() {
         return receivedDate;
     }
 
-    public void setReceivedDate(String receivedDate) {
+    public void setReceivedDate(Date receivedDate) {
         this.receivedDate = receivedDate;
     }
 }
