@@ -22,25 +22,36 @@ public class ProductController {
   private ProductRepository productRepository;
 
   @GetMapping("/all") // buat nampilin produk yang ada di database
-  public List<ProductDto> getListProduct(){
+  public List<ProductDto> getListAllProduct(){
     List<ProductDto> list = new ArrayList<>();
-    for(Product p :productRepository.findAll()){
+    for(Product p : productRepository.findAll()){
       list.add(convertEntitytoDto(p));
     }
     return list;
   }
 
-  @GetMapping("/type/{productType}") // buat ngefilter sesuai tipe produk
-  public DefaultResponse getByProductType(@PathVariable String productType){
+  @GetMapping("/type/{productType}") // buat filter sesuai tipe produk
+  public List<ProductDto> findAllByProductType(@PathVariable String productType){
     DefaultResponse df = new DefaultResponse();
-    Optional<Product> productOptional = productRepository.findByProductType(productType);
+    List<ProductDto> list = new ArrayList<>();
+    for(Product p : productRepository.findAllByProductType(productType)){
+        df.setMessage("Berikut Adalah Daftar Produk Sesuai Tipe");
+        list.add(convertEntitytoDto(p));
+      }
+    return list;
+  }
+
+  @GetMapping("/id/{productId}") // buat ngefilter sesuai tipe produk tapi cuma satu
+  public DefaultResponse getByProductId(@PathVariable Integer productId){
+    DefaultResponse df = new DefaultResponse();
+    Optional<Product> productOptional = productRepository.findByProductId(productId);
     if(productOptional.isPresent()){
       df.setStatus(Boolean.TRUE);
       df.setData(convertEntitytoDto(productOptional.get()));
-      df.setMessage("Tipe Produk Ditemukan");
+      df.setMessage("Produk Ditemukan");
     } else {
       df.setStatus(Boolean.FALSE);
-      df.setMessage("Tipe Produk Tidak Ditemukan");
+      df.setMessage("Produk Tidak Ditemukan");
     }
     return df;
   }
