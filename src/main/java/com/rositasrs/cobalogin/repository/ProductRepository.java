@@ -22,4 +22,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
   @Query(value = "select * from t_product order by price", nativeQuery = true)
   List<Product> getListLowPrice();
+
+  @Query(value = "select product_id, color_id, product_name, product_stock - product_stock_final product_sold_out\n" +
+          "from t_product\n" +
+          "order by product_sold_out desc", nativeQuery = true)
+  List<Product> getListBestSeller();
 }

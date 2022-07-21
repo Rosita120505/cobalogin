@@ -22,30 +22,36 @@ public class ProductController {
   private ProductRepository productRepository;
 
   @GetMapping("/all") // buat nampilin produk yang ada di database
-  public List<ProductDto> getListAllProduct(){
+  public List<ProductDto> getListAllProduct() {
     List<ProductDto> list = new ArrayList<>();
-    for(Product p : productRepository.findAll()){
+    for (Product p : productRepository.findAll()) {
       list.add(convertEntitytoDto(p));
     }
     return list;
   }
 
   @GetMapping("/type/{productType}") // buat filter sesuai tipe produk
-  public List<ProductDto> findAllByProductType(@PathVariable String productType){
+  public DefaultResponse findAllByProductType(@PathVariable String productType) {
     DefaultResponse df = new DefaultResponse();
     List<ProductDto> list = new ArrayList<>();
-    for(Product p : productRepository.findAllByProductType(productType)){
-        df.setMessage("Berikut Adalah Daftar Produk Sesuai Tipe");
+    List<Product> lists = productRepository.findAllByProductType(productType);
+    if (lists.size() == 0) {
+      df.setMessage("Tipe Produk Tidak Ditemukan");
+    } else {
+      df.setMessage("Berikut Adalah Daftar Produk Sesuai Tipe");
+      for (Product p : lists) {
         list.add(convertEntitytoDto(p));
       }
-    return list;
+      df.setData(list);
+    }
+    return df;
   }
 
   @GetMapping("/id/{productId}") // buat ngefilter sesuai tipe produk tapi cuma satu
-  public DefaultResponse getByProductId(@PathVariable Integer productId){
+  public DefaultResponse getByProductId(@PathVariable Integer productId) {
     DefaultResponse df = new DefaultResponse();
     Optional<Product> productOptional = productRepository.findByProductId(productId);
-    if(productOptional.isPresent()){
+    if (productOptional.isPresent()) {
       df.setStatus(Boolean.TRUE);
       df.setData(convertEntitytoDto(productOptional.get()));
       df.setMessage("Produk Ditemukan");
@@ -57,27 +63,36 @@ public class ProductController {
   }
 
   @GetMapping("/sort/bydate")
-  public List<ProductDto> getListNewProduct(){
+  public List<ProductDto> getListNewProduct() {
     List<ProductDto> list = new ArrayList<>();
-    for(Product p : productRepository.getListNewProduct()){
+    for (Product p : productRepository.getListNewProduct()) {
       list.add(convertEntitytoDto(p));
     }
     return list;
   }
 
   @GetMapping("/sort/byhighprice")
-  public List<ProductDto> getListHighPrice(){
+  public List<ProductDto> getListHighPrice() {
     List<ProductDto> list = new ArrayList<>();
-    for(Product p : productRepository.getListHighPrice()){
+    for (Product p : productRepository.getListHighPrice()) {
       list.add(convertEntitytoDto(p));
     }
     return list;
   }
 
   @GetMapping("/sort/bylowprice")
-  public List<ProductDto> getListLowPrice(){
+  public List<ProductDto> getListLowPrice() {
     List<ProductDto> list = new ArrayList<>();
-    for(Product p : productRepository.getListLowPrice()){
+    for (Product p : productRepository.getListLowPrice()) {
+      list.add(convertEntitytoDto(p));
+    }
+    return list;
+  }
+
+  @GetMapping("/sort/bybestseller")
+  public List<ProductDto> getListBestSeller() {
+    List<ProductDto> list = new ArrayList<>();
+    for (Product p : productRepository.getListBestSeller()) {
       list.add(convertEntitytoDto(p));
     }
     return list;
@@ -85,14 +100,14 @@ public class ProductController {
 
 
   @PostMapping("/save") // buat nyimpen produk di database
-  public DefaultResponse<ProductDto> saveProduct(@RequestBody ProductDto productDto){
+  public DefaultResponse<ProductDto> saveProduct(@RequestBody ProductDto productDto) {
     Product product = convertDtoToEntity(productDto);
     DefaultResponse<ProductDto> response = new DefaultResponse<>();
     Optional<Product> optionalProduct = productRepository.findByProductId(productDto.getProductId());
-    if(optionalProduct.isPresent()){
+    if (optionalProduct.isPresent()) {
       response.setStatus(Boolean.FALSE);
       response.setMessage("Gagal Menyimpan, Produk Telah Tersedia");
-    } else{
+    } else {
       productRepository.save(product);
       response.setStatus(Boolean.TRUE);
       response.setMessage("Produk Berhasil Disimpan");
@@ -101,7 +116,7 @@ public class ProductController {
     return response;
   }
 
-  public Product convertDtoToEntity(ProductDto dto){
+  public Product convertDtoToEntity(ProductDto dto) {
     Product product = new Product();
     product.setProductId(dto.getProductId());
     product.setProductName(dto.getProductName());
@@ -117,7 +132,7 @@ public class ProductController {
     return product;
   }
 
-  public ProductDto convertEntitytoDto(Product entity){
+  public ProductDto convertEntitytoDto(Product entity) {
     ProductDto dto = new ProductDto();
     dto.setProductId(entity.getProductId());
     dto.setProductName(entity.getProductName());
