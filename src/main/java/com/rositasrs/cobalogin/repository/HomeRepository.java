@@ -13,7 +13,7 @@ public interface HomeRepository extends JpaRepository <Product, Integer> {
 //    Optional<Product> findByProductReleseDate(String ProductReleseDate);
 
 //    @Query(value = "select * from table order by tanggal limit ?", nativeQuery = true)
-    @Query(value = "select * from Product order by ProductReleseDate limit 3", nativeQuery = true)
+    @Query(value = "select * from product order by product_relese_date limit 3", nativeQuery = true)
     List<Product> findByProductReleseDate();
 }
 

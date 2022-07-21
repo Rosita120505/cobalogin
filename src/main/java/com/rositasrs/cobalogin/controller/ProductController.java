@@ -48,11 +48,30 @@ public class ProductController {
   @GetMapping("/sort/bydate")
   public List<ProductDto> getListNewProduct(){
     List<ProductDto> list = new ArrayList<>();
-    for(Product p :productRepository.findAll()){
+    for(Product p : productRepository.getListNewProduct()){
       list.add(convertEntitytoDto(p));
     }
     return list;
   }
+
+  @GetMapping("/sort/byhighprice")
+  public List<ProductDto> getListHighPrice(){
+    List<ProductDto> list = new ArrayList<>();
+    for(Product p : productRepository.getListHighPrice()){
+      list.add(convertEntitytoDto(p));
+    }
+    return list;
+  }
+
+  @GetMapping("/sort/bylowprice")
+  public List<ProductDto> getListLowPrice(){
+    List<ProductDto> list = new ArrayList<>();
+    for(Product p : productRepository.getListLowPrice()){
+      list.add(convertEntitytoDto(p));
+    }
+    return list;
+  }
+
 
   @PostMapping("/save") // buat nyimpen produk di database
   public DefaultResponse<ProductDto> saveProduct(@RequestBody ProductDto productDto){
