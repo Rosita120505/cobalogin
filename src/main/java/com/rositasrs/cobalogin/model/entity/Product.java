@@ -8,7 +8,7 @@ import java.util.Date;
 public class Product {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_product")
+  @GeneratedValue(strategy = GenerationType.AUTO/*SEQUENCE, generator = "seq_product"*/)
   @Column(name = "product_id")
   private Integer productId;
   @Column(name = "product_name")
