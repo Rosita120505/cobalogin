@@ -1,15 +1,13 @@
 package com.rositasrs.cobalogin.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="t_userprofile")
 public class Profile {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_profile")
     @Column (name="profile_id")
     private Integer profileId;
 
