@@ -4,6 +4,7 @@ package com.rositasrs.cobalogin.controller;
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
 import com.rositasrs.cobalogin.model.dto.LoginDto;
 import com.rositasrs.cobalogin.model.dto.ProductDto;
+import com.rositasrs.cobalogin.model.dto.projection.BestSeller;
 import com.rositasrs.cobalogin.model.entity.Product;
 import com.rositasrs.cobalogin.model.entity.User;
 import com.rositasrs.cobalogin.repository.ProductRepository;
@@ -89,14 +90,12 @@ public class ProductController {
     return list;
   }
 
-  /*@GetMapping("/sort/bybestseller")
-  public List<ProductDto> getListBestSeller() {
-    List<ProductDto> list = new ArrayList<>();
-    for (Product p : productRepository.getListBestSeller()) {
-      list.add(convertEntitytoDto(p));
-    }
+  @GetMapping("/sort/bybestseller")
+  public List<BestSeller> getListBestSeller() {
+    List<BestSeller> list = productRepository.getListBestSeller();
+
     return list;
-  }*/
+  }
 
 
   @PostMapping("/save") // buat nyimpen produk di database
