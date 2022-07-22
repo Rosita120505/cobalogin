@@ -89,14 +89,14 @@ public class ProductController {
     return list;
   }
 
-  @GetMapping("/sort/bybestseller")
+  /*@GetMapping("/sort/bybestseller")
   public List<ProductDto> getListBestSeller() {
     List<ProductDto> list = new ArrayList<>();
     for (Product p : productRepository.getListBestSeller()) {
       list.add(convertEntitytoDto(p));
     }
     return list;
-  }
+  }*/
 
 
   @PostMapping("/save") // buat nyimpen produk di database
