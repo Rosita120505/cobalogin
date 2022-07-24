@@ -2,18 +2,14 @@ package com.rositasrs.cobalogin.repository;
 
 import com.rositasrs.cobalogin.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
+import java.util.Date;
+import java.util.Optional;
 
 public interface HomeRepository extends JpaRepository <Product, Integer> {
 
-//    Optional<Product> findByProductStockProductStockFinal (Integer ProductStock, Integer ProductStockFinal);
-//
-//    Optional<Product> findByProductReleseDate(String ProductReleseDate);
+    Optional<Product> findByProductId (Integer productId);
+    Optional<Product> findByProductStockProductStockFinal (Integer ProductStock, Integer ProductStockFinal);
 
-//    @Query(value = "select * from table order by tanggal limit ?", nativeQuery = true)
-    @Query(value = "select * from Product order by ProductReleseDate limit 3", nativeQuery = true)
-    List<Product> findByProductReleseDate();
+    Optional<Product> findByProductReleseDate(Date ProductRelesedate);
 }
-
