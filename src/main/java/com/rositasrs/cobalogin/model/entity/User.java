@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "t_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_user")
     @Column(name = "id_user")
     private Integer userId;
     @Column(name = "username", length = 15, unique = true)
@@ -21,6 +21,18 @@ public class User {
     private String email;
     @Column(name = "no_hp", length = 15)
     private String noHp;
+
+    @OneToOne
+    @JoinColumn (name = "id_user", insertable = false, updatable = false)
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -69,4 +81,5 @@ public class User {
     public void setNoHp(String noHp) {
         this.noHp = noHp;
     }
+
 }

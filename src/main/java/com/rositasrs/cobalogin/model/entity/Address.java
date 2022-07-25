@@ -10,6 +10,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_address")
     @Column(name = "address_id")
     private Integer addressId;
+    @Column(name = "id_user")
+    private Integer userId;
     @Column(name = "nama_penerima")
     private String namaPenerima;
     @Column(name = "no_hp_penerima")
@@ -25,6 +27,13 @@ public class Address {
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
+    }
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getNamaPenerima() {
