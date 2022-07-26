@@ -2,6 +2,7 @@ package com.rositasrs.cobalogin.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 public class ProductDto {
@@ -18,6 +19,7 @@ public class ProductDto {
   private Date productReleaseDate;
   private Integer productStockFinal;
   private String productType;
+
 
   public Integer getProductId() {
     return productId;

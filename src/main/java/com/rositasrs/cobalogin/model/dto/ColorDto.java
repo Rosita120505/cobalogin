@@ -1,6 +1,6 @@
 package com.rositasrs.cobalogin.model.dto;
 
-public class ColorIdDto {
+public class ColorDto {
 
   private Integer colorId;
   private String colorDescription;

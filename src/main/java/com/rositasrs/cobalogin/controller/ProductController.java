@@ -2,13 +2,19 @@ package com.rositasrs.cobalogin.controller;
 
 
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
+import com.rositasrs.cobalogin.model.dto.ProductDetailDto;
 import com.rositasrs.cobalogin.model.dto.ProductDto;
 import com.rositasrs.cobalogin.model.dto.projection.BestSellerDto;
+import com.rositasrs.cobalogin.model.entity.Color;
 import com.rositasrs.cobalogin.model.entity.Product;
+import com.rositasrs.cobalogin.repository.ColorRepository;
 import com.rositasrs.cobalogin.repository.ProductRepository;
+import com.rositasrs.cobalogin.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +25,12 @@ public class ProductController {
 
   @Autowired
   private ProductRepository productRepository;
+
+  @Autowired
+  private ColorRepository colorRepository;
+
+  /*@Autowired
+  FileUploadService fileUploadService;*/
 
   @GetMapping("/all") // buat nampilin produk yang ada di database
   public DefaultResponse getListAllProduct() {
@@ -65,6 +77,24 @@ public class ProductController {
       df.setMessage("Produk Tidak Ditemukan");
     }
     return df;
+  }
+
+  @GetMapping("/color/{productId}") //buat menampilkan produk dengan warnaupda
+  public ProductDetailDto getListAllProductDetail(@PathVariable Integer productId){
+    Optional<Product> optionalProduct = productRepository.findByProductId(productId);
+    ProductDetailDto dto = new ProductDetailDto();
+    if(optionalProduct.isPresent()){
+      Product product = optionalProduct.get();
+      dto.setProductName(product.getProductName());
+      dto.setPrice(product.getPrice());
+      dto.setProductDescription(product.getProductDescription());
+      Optional<Color> optionalColor = colorRepository.findByColorId(product.getProductId());
+      if(optionalColor.isPresent()){
+        Color color = optionalColor.get();
+        dto.setColorDescription(color.getColorDescription());
+      }
+    }
+    return dto;
   }
 
   @GetMapping("/sort/bydate") //buat sort produk terbaru
@@ -118,6 +148,12 @@ public class ProductController {
     }
     return response;
   }
+
+  /*@PostMapping("/saveimg")
+  public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+    fileUploadService.uploadFile(file);
+
+  }*/
 
   public Product convertDtoToEntity(ProductDto dto) {
     Product product = new Product();
