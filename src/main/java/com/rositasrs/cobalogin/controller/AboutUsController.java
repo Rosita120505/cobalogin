@@ -12,7 +12,8 @@ public class AboutUsController {
     public String aboutUs(){
 
         return "Zweeta Collection\n" +
+                "Alamat : Kampung Nyegog, RT 01 RW 02, Desa Bentar, kecamatan Salem Brebes Jawa tengah\n" +
                 "Owner : Rosita St. Rohimatus Sa'adah\n" +
-                "salem production\n";
+                "Salem product";
     }
 }

@@ -3,7 +3,7 @@ package com.rositasrs.cobalogin.controller;
 
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
 import com.rositasrs.cobalogin.model.dto.ProductDto;
-import com.rositasrs.cobalogin.model.dto.projection.BestSeller;
+import com.rositasrs.cobalogin.model.dto.projection.BestSellerDto;
 import com.rositasrs.cobalogin.model.entity.Product;
 import com.rositasrs.cobalogin.repository.HomeRepository;
 import net.bytebuddy.pool.TypePool;
@@ -44,8 +44,8 @@ public class HomeController {
     }
 
     @GetMapping("/best-seller")
-    public List<BestSeller> getBestSeller () {
-        List<BestSeller> result = homeRepository.getBestSeller();
+    public List<BestSellerDto> getBestSeller () {
+        List<BestSellerDto> result = homeRepository.getBestSeller();
 
         return result;
     }
