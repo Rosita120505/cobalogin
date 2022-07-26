@@ -11,10 +11,6 @@ public class Color {
   @Column(name = "color_description")
   private String colorDescription;
 
-  @OneToOne
-  @JoinColumn(name = "color_id", updatable = false, insertable = false)
-  private Product product;
-
   public Integer getColorId() {
     return colorId;
   }
@@ -29,14 +25,6 @@ public class Color {
 
   public void setColorDescription(String colorDescription) {
     this.colorDescription = colorDescription;
-  }
-
-  public Product getProduct() {
-    return product;
-  }
-
-  public void setProduct(Product product) {
-    this.product = product;
   }
 }
 
