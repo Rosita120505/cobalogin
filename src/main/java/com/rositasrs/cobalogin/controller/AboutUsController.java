@@ -11,6 +11,8 @@ public class AboutUsController {
     @GetMapping("/us")
     public String aboutUs(){
 
-        return "Zweeta Collection";
+        return "Zweeta Collection\n" +
+                "Owner : Rosita St. Rohimatus Sa'adah\n" +
+                "salem production\n";
     }
 }

@@ -1,31 +1,55 @@
 
 package com.rositasrs.cobalogin.controller;
 
-//import com.rositasrs.cobalogin.model.dto.DefaultResponse;
-//import com.rositasrs.cobalogin.model.dto.ProductDto;
-//import com.rositasrs.cobalogin.model.entity.Product;
-//import com.rositasrs.cobalogin.repository.HomeRepository;
-//import net.bytebuddy.pool.TypePool;
-//import org.hibernate.mapping.Array;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Optional;
+import com.rositasrs.cobalogin.model.dto.DefaultResponse;
+import com.rositasrs.cobalogin.model.dto.ProductDto;
+import com.rositasrs.cobalogin.model.dto.projection.BestSeller;
+import com.rositasrs.cobalogin.model.entity.Product;
+import com.rositasrs.cobalogin.repository.HomeRepository;
+import net.bytebuddy.pool.TypePool;
+import org.hibernate.mapping.Array;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-//@RestController
-//@RequestMapping ("/home")
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping ("/home")
 public class HomeController {
-//
-//    private HomeRepository homeRepository;
-//
-//    public HomeController(HomeRepository homeRepository) {
-//        this.homeRepository = homeRepository;
-//    }
-//
+
+    private HomeRepository homeRepository;
+
+    public HomeController(HomeRepository homeRepository) {
+        this.homeRepository = homeRepository;
+    }
+
+    @GetMapping("/hello")
+    public String hello(){
+
+        return "Welcome to Zweeta Collection\n" +
+                "Please choose your suitable product";
+    }
+
+    @GetMapping("/latest")
+    public List<ProductDto> getProductReleseDate(){
+        List<ProductDto> result = new ArrayList<>();
+        for (Product best : homeRepository.getProductReleseDate()) {
+            result.add(convertEntityToDto(best));
+        }
+        return result;
+    }
+
+    @GetMapping("/best-seller")
+    public List<BestSeller> getBestSeller () {
+        List<BestSeller> result = homeRepository.getBestSeller();
+
+        return result;
+    }
+
 //    @GetMapping ("/latest-product")
 //    public DefaultResponse getByProductReleseDate(){
 //        // kumpulan data sebanyak kita
@@ -76,15 +100,16 @@ public class HomeController {
 //
 //        return product;
 //    }
-//
-//    public ProductDto convertEntityToDto (Product entity) {
-//        ProductDto dto = new ProductDto();
-//        dto.setProductId(entity.getProductId());
-//        dto.setProductName(entity.getProductName());
-//        dto.setProductStock(entity.getProductStock());
-//        dto.setPrice(entity.getPrice());
-//        dto.setProductReleaseDate(entity.getProductReleaseDate());
-//        dto.setProductStockFinal(entity.getProductStockFinal());
-//
-//        return dto;
+
+    public ProductDto convertEntityToDto (Product entity) {
+        ProductDto dto = new ProductDto();
+        dto.setProductId(entity.getProductId());
+        dto.setProductName(entity.getProductName());
+        dto.setProductStock(entity.getProductStock());
+        dto.setPrice(entity.getPrice());
+        dto.setProductReleaseDate(entity.getProductReleaseDate());
+        dto.setProductStockFinal(entity.getProductStockFinal());
+
+        return dto;
+    }
 }
