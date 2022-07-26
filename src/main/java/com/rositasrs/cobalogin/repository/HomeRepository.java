@@ -1,6 +1,5 @@
 package com.rositasrs.cobalogin.repository;
 
-import com.rositasrs.cobalogin.model.dto.ProductDto;
 import com.rositasrs.cobalogin.model.dto.projection.BestSellerDto;
 import com.rositasrs.cobalogin.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
