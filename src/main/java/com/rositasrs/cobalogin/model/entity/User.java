@@ -22,17 +22,9 @@ public class User {
     @Column(name = "no_hp", length = 15)
     private String noHp;
 
-    @OneToOne
-    @JoinColumn (name = "id_user", insertable = false, updatable = false)
-    private Address address;
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+//    @OneToOne
+//    @JoinColumn (name = "id_user", insertable = false, updatable = false)
+//    private Address address;
 
     public Integer getUserId() {
         return userId;
@@ -82,4 +74,11 @@ public class User {
         this.noHp = noHp;
     }
 
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
 }

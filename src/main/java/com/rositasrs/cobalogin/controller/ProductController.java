@@ -2,11 +2,9 @@ package com.rositasrs.cobalogin.controller;
 
 
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
-import com.rositasrs.cobalogin.model.dto.LoginDto;
 import com.rositasrs.cobalogin.model.dto.ProductDto;
-import com.rositasrs.cobalogin.model.dto.projection.BestSeller;
+import com.rositasrs.cobalogin.model.dto.projection.BestSellerDto;
 import com.rositasrs.cobalogin.model.entity.Product;
-import com.rositasrs.cobalogin.model.entity.User;
 import com.rositasrs.cobalogin.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +21,18 @@ public class ProductController {
   private ProductRepository productRepository;
 
   @GetMapping("/all") // buat nampilin produk yang ada di database
-  public List<ProductDto> getListAllProduct() {
+  public DefaultResponse getListAllProduct() {
+    DefaultResponse df= new DefaultResponse();
     List<ProductDto> list = new ArrayList<>();
-    for (Product p : productRepository.findAll()) {
-      list.add(convertEntitytoDto(p));
+    List<Product> lists = productRepository.findAll();
+    if(lists.size() != 0) {
+      for (Product p : lists) {
+        df.setMessage("Berikut adalah list semua produk");
+        list.add(convertEntitytoDto(p));
+      }
+      df.setData(list);
     }
-    return list;
+    return df;
   }
 
   @GetMapping("/type/{productType}") // buat filter sesuai tipe produk
@@ -48,7 +52,7 @@ public class ProductController {
     return df;
   }
 
-  @GetMapping("/id/{productId}") // buat ngefilter sesuai tipe produk tapi cuma satu
+  @GetMapping("/id/{productId}") // buat filter sesuai tipe produk tapi cuma satu
   public DefaultResponse getByProductId(@PathVariable Integer productId) {
     DefaultResponse df = new DefaultResponse();
     Optional<Product> productOptional = productRepository.findByProductId(productId);
@@ -63,7 +67,7 @@ public class ProductController {
     return df;
   }
 
-  @GetMapping("/sort/bydate")
+  @GetMapping("/sort/bydate") //buat sort produk terbaru
   public List<ProductDto> getListNewProduct() {
     List<ProductDto> list = new ArrayList<>();
     for (Product p : productRepository.getListNewProduct()) {
@@ -72,7 +76,7 @@ public class ProductController {
     return list;
   }
 
-  @GetMapping("/sort/byhighprice")
+  @GetMapping("/sort/byhighprice") //buat sort produk termahal
   public List<ProductDto> getListHighPrice() {
     List<ProductDto> list = new ArrayList<>();
     for (Product p : productRepository.getListHighPrice()) {
@@ -81,7 +85,7 @@ public class ProductController {
     return list;
   }
 
-  @GetMapping("/sort/bylowprice")
+  @GetMapping("/sort/bylowprice") // buat sort produk termurah
   public List<ProductDto> getListLowPrice() {
     List<ProductDto> list = new ArrayList<>();
     for (Product p : productRepository.getListLowPrice()) {
@@ -90,9 +94,9 @@ public class ProductController {
     return list;
   }
 
-  @GetMapping("/sort/bybestseller")
-  public List<BestSeller> getListBestSeller() {
-    List<BestSeller> list = productRepository.getListBestSeller();
+  @GetMapping("/sort/bybestseller") //buat sort penjualan terbanyak
+  public List<BestSellerDto> getListBestSeller() {
+    List<BestSellerDto> list = productRepository.getListBestSeller();
 
     return list;
   }

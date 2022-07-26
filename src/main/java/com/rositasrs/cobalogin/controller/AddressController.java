@@ -42,6 +42,7 @@ public class AddressController {
     public Address convertDtoToEntity(AddressDto dto){
         Address address = new Address();
         address.setAddressId(dto.getAddressId());
+        address.setUserId(dto.getUserId());
         address.setAlamatPenerima(dto.getAlamatPenerima());
         address.setNamaPenerima(dto.getNamaPenerima());
         address.setNoHpPenerima(dto.getNoHpPenerima());

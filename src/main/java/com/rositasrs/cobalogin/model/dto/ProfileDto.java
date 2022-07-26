@@ -6,7 +6,6 @@ public class ProfileDto {
     private String userName;
     private String noHp;
     private String email;
-    private String password;
     private String alamatPenerima;
 
     public Integer getUserId() {
@@ -47,14 +46,6 @@ public class ProfileDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getAlamatPenerima() {
