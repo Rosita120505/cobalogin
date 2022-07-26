@@ -2,8 +2,10 @@ package com.rositasrs.cobalogin.controller;
 
 import com.rositasrs.cobalogin.model.dto.ProductDto;
 import com.rositasrs.cobalogin.model.dto.ProfileDto;
+import com.rositasrs.cobalogin.model.entity.Address;
 import com.rositasrs.cobalogin.model.entity.Product;
 import com.rositasrs.cobalogin.model.entity.User;
+import com.rositasrs.cobalogin.repository.AddressRepository;
 import com.rositasrs.cobalogin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -18,24 +20,35 @@ import java.util.List;
 @RequestMapping("/profile")
 public class ProfileController {
 
+//    @Autowired
+//    private UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    private AddressRepository addressRepository;
 
     @GetMapping("/user")
     public List<ProfileDto> getListUserProfile() {
         List<ProfileDto> list = new ArrayList<>();
-        for (User u : userRepository.findAll()) {
-            list.add(convertEntitytoDto(u));
+        for (Address a : addressRepository.findAll()) {
+            list.add(convertEntitytoDto(a));
         }
         return list;
     }
 
-    public ProfileDto convertEntitytoDto(User entity) {
+    public ProfileDto convertEntitytoDto(Address entity) {
         ProfileDto dto = new ProfileDto();
-        dto.setUserId(entity.getUserId());
-        dto.setEmail(entity.getEmail());
-        dto.setFullName(entity.getFullName());
-        dto.setAlamatPenerima(entity.getAddress().getAlamatPenerima());
+        dto.setUserId(entity.getUser().getUserId());
+        dto.setUserName(entity.getUser().getUserName());
+        dto.setFullName(entity.getUser().getFullName());
+        dto.setNoHp(entity.getUser().getNoHp());
+        dto.setEmail(entity.getUser().getEmail());
+        dto.setAlamatPenerima(entity.getAlamatPenerima());
+//        dto.setUserId(entity.getUserId());
+//        dto.setUserName(entity.getUserName());
+//        dto.setEmail(entity.getEmail());
+//        dto.setFullName(entity.getFullName());
+//        dto.setNoHp(entity.getNoHp());
+//        dto.setAlamatPenerima(entity.getAddress().getAlamatPenerima());
 
         return dto;
     }

@@ -1,12 +1,11 @@
 package com.rositasrs.cobalogin.model.dto;
 
-import javax.persistence.Column;
-
 public class AddressDto {
 
     private Integer addressId;
+    private Integer userId;
     private String namaPenerima;
-    private Integer noHpPenerima;
+    private String noHpPenerima;
     private String alamatPenerima;
     private Integer kodePos;
 
@@ -18,6 +17,14 @@ public class AddressDto {
         this.addressId = addressId;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public String getNamaPenerima() {
         return namaPenerima;
     }
@@ -26,11 +33,11 @@ public class AddressDto {
         this.namaPenerima = namaPenerima;
     }
 
-    public Integer getNoHpPenerima() {
+    public String getNoHpPenerima() {
         return noHpPenerima;
     }
 
-    public void setNoHpPenerima(Integer noHpPenerima) {
+    public void setNoHpPenerima(String noHpPenerima) {
         this.noHpPenerima = noHpPenerima;
     }
 

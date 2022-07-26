@@ -8,7 +8,6 @@ public class RegisterDto {
     private String noHp;
     private String email;
     private String password;
-    private Integer addressId;
 
     public Integer getUserId() {
         return userId;
@@ -56,13 +55,5 @@ public class RegisterDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
     }
 }
