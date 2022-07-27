@@ -3,9 +3,7 @@ package com.rositasrs.cobalogin.controller;
 
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
 import com.rositasrs.cobalogin.model.dto.ExpeditionDto;
-import com.rositasrs.cobalogin.model.dto.ProductDto;
 import com.rositasrs.cobalogin.model.entity.Expedition;
-import com.rositasrs.cobalogin.model.entity.Product;
 import com.rositasrs.cobalogin.repository.ExpeditionRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,10 +33,9 @@ public class ExpeditionController {
         } else {
             expeditionRepository.save(expedition);
             response.setStatus(Boolean.TRUE);
-            response.setMessage("Jasa Ekspedisi Berhasil Disimpan");
+            response.setMessage("Jasa Ekspedisi Berhasil Ditambahkan");
             response.setData(expeditionDto);
         }
-
         return response;
     }
 

@@ -32,6 +32,7 @@ public class Product {
   @Column(name = "product_type")
   private String productType;
 
+
   public Integer getProductId() {
     return productId;
   }

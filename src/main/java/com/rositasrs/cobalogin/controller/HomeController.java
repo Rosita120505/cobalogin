@@ -35,10 +35,10 @@ public class HomeController {
     }
 
     @GetMapping("/latest")
-    public List<ProductDto> getProductReleseDate(){
+    public List<ProductDto> getProductReleaseDate(){
         List<ProductDto> result = new ArrayList<>();
-        for (Product best : homeRepository.getProductReleseDate()) {
-            result.add(convertEntityToDto(best));
+        for (Product late : homeRepository.getProductReleaseDate()) {
+            result.add(convertEntityToDto(late));
         }
         return result;
     }
@@ -109,6 +109,7 @@ public class HomeController {
         dto.setPrice(entity.getPrice());
         dto.setProductReleaseDate(entity.getProductReleaseDate());
         dto.setProductStockFinal(entity.getProductStockFinal());
+        dto.setProductType(entity.getProductType());
 
         return dto;
     }

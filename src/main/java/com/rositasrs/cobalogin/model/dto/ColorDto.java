@@ -1,17 +1,8 @@
-package com.rositasrs.cobalogin.model.entity;
+package com.rositasrs.cobalogin.model.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class ColorDto {
 
-@Entity
-@Table(name = "t_colorId")
-public class ColorId {
-  @Id
-  @Column(name = "color_id")
   private Integer colorId;
-  @Column
   private String colorDescription;
 
   public Integer getColorId() {
@@ -30,4 +21,3 @@ public class ColorId {
     this.colorDescription = colorDescription;
   }
 }
-
