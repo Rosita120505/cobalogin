@@ -1,24 +1,17 @@
 
 package com.rositasrs.cobalogin.controller;
 
-import com.rositasrs.cobalogin.model.dto.DefaultResponse;
-import com.rositasrs.cobalogin.model.dto.ProductDto;
+
 import com.rositasrs.cobalogin.model.dto.projection.BestSellerDto;
 import com.rositasrs.cobalogin.model.dto.projection.LatestProductDto;
-import com.rositasrs.cobalogin.model.entity.Product;
 import com.rositasrs.cobalogin.repository.HomeRepository;
 import com.rositasrs.cobalogin.repository.ProductRepository;
-import net.bytebuddy.pool.TypePool;
-import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping ("/home")
