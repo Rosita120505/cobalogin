@@ -2,8 +2,10 @@ package com.rositasrs.cobalogin.controller;
 
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
 import com.rositasrs.cobalogin.model.dto.OrderDto;
+import com.rositasrs.cobalogin.model.dto.projection.OrderHistoryDto;
 import com.rositasrs.cobalogin.model.entity.Order;
 import com.rositasrs.cobalogin.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,11 +16,13 @@ import java.util.Optional;
 @RequestMapping("/order")
 public class OrderController {
 
-    private final OrderRepository orderRepository;
-
-    public OrderController (OrderRepository orderRepository){
-        this.orderRepository = orderRepository;
-    }
+//    private final OrderRepository orderRepository;
+//
+//    public OrderController (OrderRepository orderRepository){
+//        this.orderRepository = orderRepository;
+//    }
+    @Autowired
+    OrderRepository orderRepository;
 
     @GetMapping("/orderan")
     public List<OrderDto> getListOrder(){
@@ -42,6 +46,12 @@ public class OrderController {
         }
         return response;
 
+    }
+    @GetMapping("/orderhistory") //untuk lihat riwayat pesanan
+    public List<OrderHistoryDto> getListHistoryOrder() {
+        List<OrderHistoryDto> list = orderRepository.getListHistoryOrder();
+
+        return list;
     }
     public Order convertDtotoEntity(OrderDto dto){
         Order order = new Order();
