@@ -39,6 +39,7 @@ public class UploadFileServiceImpl implements UploadFileService {
             uploadFile.setFileData(file.getBytes());
             uploadFile.setFileType(file.getContentType());
             uploadFile.setFileName(file.getOriginalFilename());
+            uploadFileRepository.save(uploadFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
