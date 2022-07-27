@@ -10,6 +10,6 @@ import java.io.IOException;
 public class FileUploadUserService {
 
     public void uploadFile(MultipartFile file) throws IllegalStateException, IOException {
-        file.transferTo(new File("C:\\Users\\psm\\Documents\\FileUploadUser\\"+file.getOriginalFilename()));
+        file.transferTo(new File("C:\\Users\\psm\\Documents\\Ridwan Maulana\\"+file.getOriginalFilename()));
     }
 }

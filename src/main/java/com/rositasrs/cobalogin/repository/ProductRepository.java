@@ -1,6 +1,7 @@
 package com.rositasrs.cobalogin.repository;
 
 import com.rositasrs.cobalogin.model.dto.projection.BestSellerDto;
+import com.rositasrs.cobalogin.model.dto.projection.LatestProductDto;
 import com.rositasrs.cobalogin.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,6 +28,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
           "from t_product\n" +
           "order by totalSelling desc;", nativeQuery = true)
   List<BestSellerDto> getListBestSeller();
-
 
 }
