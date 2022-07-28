@@ -33,16 +33,20 @@ public class UploadFileServiceImpl implements UploadFileService {
     }
 
     @Override
-    public void uploadToDb(MultipartFile file) {
+    public UploadFile uploadToDb(MultipartFile file) {
         UploadFile uploadFile = new UploadFile();
         try {
             uploadFile.setFileData(file.getBytes());
             uploadFile.setFileType(file.getContentType());
             uploadFile.setFileName(file.getOriginalFilename());
-            uploadFileRepository.save(uploadFile);
+            UploadFile uploadedFileToRet = uploadFileRepository.save(uploadFile);
+            return uploadedFileToRet;
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return uploadFile;
     }
 
     @Override

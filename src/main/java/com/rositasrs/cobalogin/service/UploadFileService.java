@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface UploadFileService {
 
     public void uploadToLocal(MultipartFile file);
-    public void uploadToDb(MultipartFile file);
+    public UploadFile uploadToDb(MultipartFile file);
     public Optional<UploadFile> downloadFile (String fileId);
 }
