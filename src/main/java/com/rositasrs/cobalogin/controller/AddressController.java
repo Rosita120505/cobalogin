@@ -2,11 +2,8 @@ package com.rositasrs.cobalogin.controller;
 
 import com.rositasrs.cobalogin.model.dto.AddressDto;
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
-import com.rositasrs.cobalogin.model.dto.RegisterDto;
 import com.rositasrs.cobalogin.model.entity.Address;
-import com.rositasrs.cobalogin.model.entity.User;
 import com.rositasrs.cobalogin.repository.AddressRepository;
-import com.rositasrs.cobalogin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +18,9 @@ public class AddressController {
 
     @Autowired
     private AddressRepository addressRepository;
+    public AddressController(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
+    }
 
     @PostMapping("/save")
     public DefaultResponse saveaddress(@RequestBody AddressDto addressDto){

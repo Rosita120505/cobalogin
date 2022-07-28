@@ -9,12 +9,10 @@ import com.rositasrs.cobalogin.model.entity.Color;
 import com.rositasrs.cobalogin.model.entity.Product;
 import com.rositasrs.cobalogin.repository.ColorRepository;
 import com.rositasrs.cobalogin.repository.ProductRepository;
-import com.rositasrs.cobalogin.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

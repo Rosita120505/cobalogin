@@ -1,15 +1,13 @@
 package com.rositasrs.cobalogin.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_paymentmethod")
 public class PaymentMethod {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "seq_payment_method")
     @Column(name = "payment_id")
     private Integer paymentId;
     @Column(name = "description")
