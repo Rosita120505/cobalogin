@@ -4,6 +4,7 @@ import com.rositasrs.cobalogin.model.entity.UploadFile;
 import com.rositasrs.cobalogin.service.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class UploadFileController {
     }
 
     @GetMapping("/download/{id}")
-    public ResponseEntity<ByteArrayResource> downloadFile (@PathVariable String id) {
+    public ResponseEntity<Resource> downloadFile (@PathVariable String id) {
 
         Optional<UploadFile> uploadFileToRet = uploadFileService.downloadFile(id);
 
