@@ -3,7 +3,6 @@ package com.rositasrs.cobalogin.service.serviceImpl;
 import com.rositasrs.cobalogin.model.entity.UploadFile;
 import com.rositasrs.cobalogin.repository.UploadFileRepository;
 import com.rositasrs.cobalogin.service.UploadFileService;
-import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 @Service
 public class UploadFileServiceImpl implements UploadFileService {
@@ -43,5 +43,11 @@ public class UploadFileServiceImpl implements UploadFileService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Optional<UploadFile> downloadFile(String fileId) {
+        Optional<UploadFile> uploadFileToRet = uploadFileRepository.findById(fileId);
+        return uploadFileToRet;
     }
 }
