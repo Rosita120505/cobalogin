@@ -9,10 +9,13 @@ import com.rositasrs.cobalogin.model.entity.Color;
 import com.rositasrs.cobalogin.model.entity.Product;
 import com.rositasrs.cobalogin.repository.ColorRepository;
 import com.rositasrs.cobalogin.repository.ProductRepository;
+import com.rositasrs.cobalogin.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +30,9 @@ public class ProductController {
   @Autowired
   private ColorRepository colorRepository;
 
-  /*@Autowired
-  FileUploadService fileUploadService;*/
+  @Autowired
+  private ProductService productService;
+
 
   @GetMapping("/all") // buat nampilin produk yang ada di database
   public DefaultResponse getListAllProduct() {
@@ -147,11 +151,15 @@ public class ProductController {
     return response;
   }
 
-  /*@PostMapping("/saveimg")
-  public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-    fileUploadService.uploadFile(file);
+  @PostMapping("/upload")
+  public void uploadFileLocal(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+    productService.uploadFileLocal(multipartFile);
+    productService.uploadFileDb(multipartFile);
+  }
 
-  }*/
+  @GetMapping("/download/{fileName}")
+
+
 
   public Product convertDtoToEntity(ProductDto dto) {
     Product product = new Product();

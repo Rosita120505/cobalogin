@@ -29,4 +29,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
           "order by totalSelling desc;", nativeQuery = true)
   List<BestSellerDto> getListBestSeller();
 
+
 }

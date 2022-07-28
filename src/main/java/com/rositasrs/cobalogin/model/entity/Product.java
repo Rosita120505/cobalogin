@@ -31,6 +31,10 @@ public class Product {
   private Integer productStockFinal;
   @Column(name = "product_type")
   private String productType;
+  private String fileName;
+  private String fileType;
+  @Lob
+  private byte[] fileData;
 
 
   public Integer getProductId() {
@@ -111,5 +115,29 @@ public class Product {
 
   public void setProductType(String productType) {
     this.productType = productType;
+  }
+
+  public byte[] getFileData() {
+    return fileData;
+  }
+
+  public void setFileData(byte[] fileData) {
+    this.fileData = fileData;
+  }
+
+  public String getFileName() {
+    return fileName;
+  }
+
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
+  }
+
+  public String getFileType() {
+    return fileType;
+  }
+
+  public void setFileType(String fileType) {
+    this.fileType = fileType;
   }
 }
