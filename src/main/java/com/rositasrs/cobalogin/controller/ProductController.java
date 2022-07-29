@@ -4,6 +4,7 @@ package com.rositasrs.cobalogin.controller;
 import com.rositasrs.cobalogin.model.dto.DefaultResponse;
 import com.rositasrs.cobalogin.model.dto.ProductDetailDto;
 import com.rositasrs.cobalogin.model.dto.ProductDto;
+import com.rositasrs.cobalogin.model.dto.ProductResponse;
 import com.rositasrs.cobalogin.model.dto.projection.BestSellerDto;
 import com.rositasrs.cobalogin.model.entity.Color;
 import com.rositasrs.cobalogin.model.entity.Product;
@@ -11,8 +12,14 @@ import com.rositasrs.cobalogin.repository.ColorRepository;
 import com.rositasrs.cobalogin.repository.ProductRepository;
 import com.rositasrs.cobalogin.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 import java.io.IOException;
@@ -36,10 +43,10 @@ public class ProductController {
 
   @GetMapping("/all") // buat nampilin produk yang ada di database
   public DefaultResponse getListAllProduct() {
-    DefaultResponse df= new DefaultResponse();
+    DefaultResponse df = new DefaultResponse();
     List<ProductDto> list = new ArrayList<>();
     List<Product> lists = productRepository.findAll();
-    if(lists.size() != 0) {
+    if (lists.size() != 0) {
       for (Product p : lists) {
         df.setMessage("Berikut adalah list semua produk");
         list.add(convertEntitytoDto(p));
@@ -67,7 +74,7 @@ public class ProductController {
   }
 
   @GetMapping("/id/{productId}") // buat filter sesuai tipe produk tapi cuma satu
-  public DefaultResponse getByProductId(@PathVariable Integer productId) {
+  public DefaultResponse getByProductId(@PathVariable String productId) {
     DefaultResponse df = new DefaultResponse();
     Optional<Product> productOptional = productRepository.findByProductId(productId);
     if (productOptional.isPresent()) {
@@ -81,17 +88,17 @@ public class ProductController {
     return df;
   }
 
-  @GetMapping("/color/{productId}") //buat menampilkan produk dengan warnaupda
-  public ProductDetailDto getListAllProductDetail(@PathVariable Integer productId){
+  @GetMapping("/color/{productId}") //buat menampilkan produk dengan warna
+  public ProductDetailDto getListAllProductDetail(@PathVariable String productId) {
     Optional<Product> optionalProduct = productRepository.findByProductId(productId);
     ProductDetailDto dto = new ProductDetailDto();
-    if(optionalProduct.isPresent()){
+    if (optionalProduct.isPresent()) {
       Product product = optionalProduct.get();
       dto.setProductName(product.getProductName());
       dto.setPrice(product.getPrice());
       dto.setProductDescription(product.getProductDescription());
       Optional<Color> optionalColor = colorRepository.findByColorId(product.getProductId());
-      if(optionalColor.isPresent()){
+      if (optionalColor.isPresent()) {
         Color color = optionalColor.get();
         dto.setColorDescription(color.getColorDescription());
       }
@@ -136,7 +143,7 @@ public class ProductController {
 
   @PostMapping("/save") // buat nyimpen produk di database
   public DefaultResponse<ProductDto> saveProduct(@RequestBody ProductDto productDto) {
-    Product product = convertDtoToEntity(productDto);
+    Product product = convertDtotoEntity(productDto);
     DefaultResponse<ProductDto> response = new DefaultResponse<>();
     Optional<Product> optionalProduct = productRepository.findByProductId(productDto.getProductId());
     if (optionalProduct.isPresent()) {
@@ -151,17 +158,40 @@ public class ProductController {
     return response;
   }
 
+
   @PostMapping("/upload")
-  public void uploadFileLocal(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+  public ProductResponse uploadFileDb(@RequestParam("file") MultipartFile multipartFile) throws IOException {
     productService.uploadFileLocal(multipartFile);
-    productService.uploadFileDb(multipartFile);
+    Product product = productService.uploadFileDb(multipartFile);
+    ProductResponse productResponse = new ProductResponse();
+    if (product != null) {
+      String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+              .path("/product/download/")
+              .path(product.getProductId())
+              .toUriString();
+      productResponse.setDownloadUri(downloadUri);
+      productResponse.setProductId(product.getProductId());
+      productResponse.setFileType(product.getFileType());
+      productResponse.setUploadStatus(true);
+      productResponse.setMessage("Gambar berhasil diupload.");
+      return productResponse;
+    }
+    productResponse.setMessage("Kesalahan telah terjadi.");
+    return productResponse;
   }
 
-  @GetMapping("/download/{fileName}")
+  @GetMapping("/download/{productId}")
+  public ResponseEntity<Resource> downloadFile(@PathVariable String productId) {
+    Optional<Product> product = productService.downloadFile(productId);
+    return ResponseEntity.ok()
+            .contentType(MediaType.parseMediaType(product.get().getFileType()))
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename = " + product.get().getFileName())
+            .body(new ByteArrayResource(product.get().getFileData()));
+
+  }
 
 
-
-  public Product convertDtoToEntity(ProductDto dto) {
+  public Product convertDtotoEntity(ProductDto dto) {
     Product product = new Product();
     product.setProductId(dto.getProductId());
     product.setProductName(dto.getProductName());

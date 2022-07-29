@@ -1,7 +1,6 @@
 package com.rositasrs.cobalogin.repository;
 
 import com.rositasrs.cobalogin.model.dto.projection.BestSellerDto;
-import com.rositasrs.cobalogin.model.dto.projection.LatestProductDto;
 import com.rositasrs.cobalogin.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, String> {
 
-  Optional<Product> findByProductId (Integer productId);
+  Optional<Product> findByProductId (String productId);
 
   List<Product> findAllByProductType(String productType);
 

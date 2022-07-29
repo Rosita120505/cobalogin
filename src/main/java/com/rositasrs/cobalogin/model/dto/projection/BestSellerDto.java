@@ -1,8 +1,8 @@
 package com.rositasrs.cobalogin.model.dto.projection;
 
 public interface BestSellerDto {
-  Integer getProductId();
+  String getProductId();
   String getProductName();
-  Integer getColorId();
+  String getColorId();
   String getTotalSelling();
 }

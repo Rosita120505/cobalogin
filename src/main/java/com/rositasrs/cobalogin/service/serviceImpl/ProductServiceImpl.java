@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -29,14 +30,18 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public void uploadFileDb(MultipartFile file) throws IOException {
-
+  public Product uploadFileDb(MultipartFile file) throws IOException {
     Product product = new Product();
     product.setFileData(file.getBytes());
     product.setFileName(file.getOriginalFilename());
     product.setFileType(file.getContentType());
-    productRepository.save(product);
+    Product products = productRepository.save(product);
+    return products;
+  }
 
-
+  @Override
+  public Optional<Product> downloadFile(String productId) {
+    Optional<Product> product = productRepository.findById(productId);
+    return product;
   }
 }

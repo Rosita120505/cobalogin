@@ -2,14 +2,14 @@ package com.rositasrs.cobalogin.model.dto;
 
 public class ColorDto {
 
-  private Integer colorId;
+  private String colorId;
   private String colorDescription;
 
-  public Integer getColorId() {
+  public String getColorId() {
     return colorId;
   }
 
-  public void setColorId(Integer colorId) {
+  public void setColorId(String colorId) {
     this.colorId = colorId;
   }
 

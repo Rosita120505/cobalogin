@@ -7,10 +7,9 @@ import java.util.Date;
 
 public class ProductDto {
 
-  private Integer productId;
+  private String productId;
   private String productName;
-  /*private ?????? image;*/
-  private Integer colorId;
+  private String colorId;
   private Integer productStock;
   private Double price;
   private String productDescription;
@@ -20,12 +19,11 @@ public class ProductDto {
   private Integer productStockFinal;
   private String productType;
 
-
-  public Integer getProductId() {
+  public String getProductId() {
     return productId;
   }
 
-  public void setProductId(Integer productId) {
+  public void setProductId(String productId) {
     this.productId = productId;
   }
 
@@ -37,11 +35,11 @@ public class ProductDto {
     this.productName = productName;
   }
 
-  public Integer getColorId() {
+  public String getColorId() {
     return colorId;
   }
 
-  public void setColorId(Integer colorId) {
+  public void setColorId(String colorId) {
     this.colorId = colorId;
   }
 

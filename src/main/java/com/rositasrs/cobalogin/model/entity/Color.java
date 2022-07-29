@@ -7,15 +7,15 @@ import javax.persistence.*;
 public class Color {
   @Id
   @Column(name = "color_id")
-  private Integer colorId;
+  private String colorId;
   @Column(name = "color_description")
   private String colorDescription;
 
-  public Integer getColorId() {
+  public String getColorId() {
     return colorId;
   }
 
-  public void setColorId(Integer colorId) {
+  public void setColorId(String colorId) {
     this.colorId = colorId;
   }
 

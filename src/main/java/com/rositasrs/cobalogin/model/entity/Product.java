@@ -1,5 +1,7 @@
 package com.rositasrs.cobalogin.model.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,14 +10,15 @@ import java.util.Date;
 public class Product {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO,generator = "seq_product")
+  //@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_product")
+  @GeneratedValue(generator = "uuid")
+  @GenericGenerator(name = "uuid", strategy = "uuid2")
   @Column(name = "product_id")
-  private Integer productId;
+  private String productId;
   @Column(name = "product_name")
   private String productName;
-  /*private ?????? image;*/
   @Column(name = "color_id")
-  private Integer colorId;
+  private String colorId;
   @Column(name = "product_stock")
   private Integer productStock;
   @Column
@@ -36,12 +39,11 @@ public class Product {
   @Lob
   private byte[] fileData;
 
-
-  public Integer getProductId() {
+  public String getProductId() {
     return productId;
   }
 
-  public void setProductId(Integer productId) {
+  public void setProductId(String productId) {
     this.productId = productId;
   }
 
@@ -53,11 +55,11 @@ public class Product {
     this.productName = productName;
   }
 
-  public Integer getColorId() {
+  public String getColorId() {
     return colorId;
   }
 
-  public void setColorId(Integer colorId) {
+  public void setColorId(String colorId) {
     this.colorId = colorId;
   }
 
@@ -117,14 +119,6 @@ public class Product {
     this.productType = productType;
   }
 
-  public byte[] getFileData() {
-    return fileData;
-  }
-
-  public void setFileData(byte[] fileData) {
-    this.fileData = fileData;
-  }
-
   public String getFileName() {
     return fileName;
   }
@@ -139,5 +133,13 @@ public class Product {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public byte[] getFileData() {
+    return fileData;
+  }
+
+  public void setFileData(byte[] fileData) {
+    this.fileData = fileData;
   }
 }

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface HomeRepository extends JpaRepository <Product, Integer> {
+public interface HomeRepository extends JpaRepository <Product, String> {
 
 //    Optional<Product> findByProductStockProductStockFinal (Integer ProductStock, Integer ProductStockFinal);
 //
